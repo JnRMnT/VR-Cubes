@@ -61,7 +61,7 @@ public class MainPlayerController : JMBehaviour
 
         if (PauseButtonController.Instance != null && GameManager.GameState != GameState.Over)
         {
-            if (Camera.main.transform.forward.y > 0.9f)
+            if (Camera.main.transform.forward.y > 0.95f)
             {
                 if (GameManager.CanBePaused())
                 {
@@ -192,7 +192,7 @@ public class MainPlayerController : JMBehaviour
     {
         Vector3 walkDirection = Instance.GetWalkDirection(cube);
         Vector3 walkDestination = Instance.transform.position + new Vector3(cubeSize.x * walkDirection.x, cubeSize.y * walkDirection.y, cubeSize.z * walkDirection.z);
-        bool canWalk = destination == Vector3.zero && Instance.transform.position.y + cube.Size.y > walkDestination.y && cube.IsCloseEnoughToWalk();
+        bool canWalk = destination == Vector3.zero && Instance.transform.position.y + Cube.Size.y > walkDestination.y && cube.IsCloseEnoughToWalk();
         if (canWalk && Mathf.Abs(walkDestination.y - Instance.transform.position.y) < cubeSize.y / 3)
         {
             //raycast if occuppied

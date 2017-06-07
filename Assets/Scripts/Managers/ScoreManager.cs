@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class ScoreManager : JMBehaviour
 {
@@ -37,6 +38,11 @@ public class ScoreManager : JMBehaviour
     {
         bonusScore = 0;
         timeScore = 0;
+    }
+
+    public static void HandleChain(int chainLength)
+    {
+        bonusScore += (chainLength - 2) * 10;
     }
 
     public override void DoFixedUpdate()

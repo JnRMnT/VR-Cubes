@@ -11,7 +11,7 @@ public class Cube : JMBehaviour
     public CubeColor Color;
     private bool isFalling, isBeingPushed;
     private Vector3 pushDestination;
-    public Vector3 Size;
+    public static Vector3 Size;
 
     public bool IsBusy
     {
@@ -63,6 +63,7 @@ public class Cube : JMBehaviour
                         //if no block is under, start falling again
                         isFalling = true;
                     }
+                    BlockChainHelper.CheckChains(this);
                 }
             }
             else if (isFalling)
@@ -212,6 +213,7 @@ public class Cube : JMBehaviour
             //Stop
             isFalling = false;
             transform.parent.position = new Vector3(transform.parent.position.x, collision.transform.position.y + Size.y, transform.parent.position.z);
+            BlockChainHelper.CheckChains(this);
         }
     }
 

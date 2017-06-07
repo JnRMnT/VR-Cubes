@@ -66,7 +66,7 @@ public class CubeInteractions : JMBehaviour
     {
         RaycastHit rayHit;
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
-        if (Physics.Raycast(ray, out rayHit) && rayHit.point.y >= cube.transform.position.y + (cube.Size.y / 4))
+        if (Physics.Raycast(ray, out rayHit) && rayHit.point.y >= cube.transform.position.y + (Cube.Size.y / 4))
         {
             //Climb
             return true;
