@@ -14,6 +14,7 @@ public class Cube : JMBehaviour
     public static Vector3 Size;
     private bool isShrinking;
     private float shrinkInterval = 1f;
+    public AudioSource LandSound;
 
     public bool IsBusy
     {
@@ -225,6 +226,7 @@ public class Cube : JMBehaviour
         {
             //Stop
             isFalling = false;
+            LandSound.PlayOneShot(LandSound.clip);
             transform.parent.position = new Vector3(transform.parent.position.x, collision.transform.position.y + Size.y, transform.parent.position.z);
             BlockChainHelper.CheckChains(this);
         }

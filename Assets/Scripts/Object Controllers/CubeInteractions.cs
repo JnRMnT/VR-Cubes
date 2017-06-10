@@ -283,8 +283,11 @@ public class CubeInteractions : JMBehaviour
         {
             foreach (GameObject text in texts)
             {
-                text.GetComponent<Collider>().enabled = true;
-                text.SetActive(false);
+                if (text.GetComponent<Collider>() != null)
+                {
+                    text.GetComponent<Collider>().enabled = true;
+                    text.SetActive(false);
+                }
             }
         }
     }
