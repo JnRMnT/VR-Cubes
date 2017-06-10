@@ -94,6 +94,8 @@ public class MainPlayerController : JMBehaviour
                 rotationChange = Vector3.zero;
             }
         }
+
+        Debug.DrawLine(transform.position, transform.position + Vector3.up * 20f);
         base.DoUpdate();
     }
 
@@ -201,7 +203,7 @@ public class MainPlayerController : JMBehaviour
             {
                 foreach (Collider overlappingCollider in overlappingColliders)
                 {
-                    if (canWalk && overlappingCollider.tag != "Floor" && overlappingCollider.gameObject.GetInstanceID() != cube.gameObject.GetInstanceID())
+                    if (canWalk && overlappingCollider.tag == "Cube")
                     {
                         canWalk = false;
                     }

@@ -12,12 +12,14 @@ public class Cube : JMBehaviour
     private bool isFalling, isBeingPushed;
     private Vector3 pushDestination;
     public static Vector3 Size;
+    private bool isShrinking;
+    private float shrinkInterval = 1f;
 
     public bool IsBusy
     {
         get
         {
-            return isFalling || isBeingPushed;
+            return isFalling || isBeingPushed || isShrinking;
         }
     }
 
@@ -28,6 +30,7 @@ public class Cube : JMBehaviour
             isFalling = true;
         }
         isBeingPushed = false;
+        isShrinking = false;
         Size = GameObjectHelper.CalculateObjectSize(gameObject);
         base.DoStart();
     }
@@ -70,6 +73,16 @@ public class Cube : JMBehaviour
             {
                 Vector3 newPosition = Vector3.Lerp(transform.parent.position, transform.parent.position + Vector3.down * 10f, Time.fixedDeltaTime * CalculateFallSpeed());
                 transform.parent.position = newPosition;
+            }
+            else if (isShrinking)
+            {
+                //This was part of a chain, we are giving feedback and destroying this cube
+                transform.localScale = Vector3.one * shrinkInterval;
+                shrinkInterval -= Time.fixedDeltaTime;
+                if(shrinkInterval <= 0)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
         base.DoFixedUpdate();
@@ -222,7 +235,7 @@ public class Cube : JMBehaviour
         if (collision.transform.tag == "Cube" && !isFloor && collision.transform.position.y < transform.parent.position.y)
         {
             StartCoroutine(CheckDownCollision(collision.gameObject.GetComponent<Cube>()));
-         }
+        }
     }
 
     private IEnumerator CheckDownCollision(Cube cube)
@@ -236,7 +249,7 @@ public class Cube : JMBehaviour
         {
             yield return new WaitUntil(() => { return !IsBusy; });
         }
-        
+
         RaycastHit[] raycastHits = Physics.RaycastAll(transform.parent.position, transform.parent.up * -1, Size.y);
         bool isFloored = false;
         for (int i = 0; i < raycastHits.Length; i++)
@@ -252,5 +265,11 @@ public class Cube : JMBehaviour
             //Start Falling Again
             isFalling = true;
         }
+    }
+
+    public void HandleChain()
+    {
+        //This cube is part of a chain, give feedback and destroy
+        isShrinking = true;
     }
 }

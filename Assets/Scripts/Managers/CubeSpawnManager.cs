@@ -52,8 +52,8 @@ public class CubeSpawnManager : JMBehaviour
 
     private void Spawn()
     {
-        int x = Random.Range(0, (int)(GameManager.GridSize.x - 1));
-        int z = Random.Range(0, (int)(GameManager.GridSize.z - 1));
+        int x = Random.Range(0, (int)(GameManager.GridSize.x));
+        int z = Random.Range(0, (int)(GameManager.GridSize.z));
         GameObject spawnedCube = Instantiate(ResourceManager.Instance.CubePrefab, new Vector3(cubeSize.x * x, cubeSize.y * (GameManager.GridSize.y + 1), cubeSize.z * z), Quaternion.identity);
         Cube spawnedCubeScript = spawnedCube.transform.Find("CubeBody").GetComponent<Cube>();
         spawnedCubeScript.SetColor(Random.Range(0, (int)CubeColor.Pink));

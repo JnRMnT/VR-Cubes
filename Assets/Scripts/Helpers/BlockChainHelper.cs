@@ -14,12 +14,11 @@ public class BlockChainHelper
         if (chain.Count >= 3)
         {
             //We have a chain!
-            Debug.Log("CHAIN!");
+            ScoreManager.HandleChain(chain.Count);
             foreach (Cube chainCube in chain)
             {
-                Debug.DrawLine(chainCube.transform.position, chainCube.transform.position + Vector3.forward, Color.green, 5f);
+                chainCube.HandleChain();
             }
-            ScoreManager.HandleChain(chain.Count);
         }
     }
 
