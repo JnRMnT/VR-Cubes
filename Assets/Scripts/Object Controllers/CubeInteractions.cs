@@ -60,6 +60,11 @@ public class CubeInteractions : JMBehaviour
                 MainPlayerController.Instance.WalkTowards(cube);
             }
         }
+
+        if (GetComponent<GazeToClickInteraction>().IsGazing)
+        {
+            ExecuteEvents.Execute(gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerEnterHandler);
+        }
     }
 
     protected bool ClimbOrPush()

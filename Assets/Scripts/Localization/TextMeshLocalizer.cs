@@ -2,18 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TextMeshLocalizer : JMBehaviour
+public class TextMeshLocalizer : JMLocalizable
 {
-    public bool IsLocalizable = true;
-    public string ResourceKey;
-
-    public override void DoStart()
+    public override void SetText()
     {
-        if (IsLocalizable)
-        {
-            this.GetComponent<TextMesh>().text = LanguageManager.GetString(ResourceKey);
-        }
-
-        base.DoStart();
+        this.GetComponent<TextMesh>().text = LanguageManager.GetString(ResourceKey);
+        base.SetText();
     }
 }

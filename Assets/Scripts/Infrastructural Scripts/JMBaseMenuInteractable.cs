@@ -85,6 +85,7 @@ public class JMBaseMenuInteractable : JMBehaviour
     public void OnPointerExit()
     {
         internalClick = false;
+        feedbackObject.transform.localScale = Vector3.one;
         feedbackObject.gameObject.SetActive(false);
         isGazing = false;
         gazeCounter = 0;
@@ -93,9 +94,14 @@ public class JMBaseMenuInteractable : JMBehaviour
 
     public void OnPointerDown()
     {
+        feedbackObject.transform.localScale = Vector3.one;
         feedbackObject.gameObject.SetActive(false);
         DoPointerDown();
         internalClick = false;
+        if (isGazing)
+        {
+            ExecuteEvents.Execute(gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerEnterHandler);
+        }
     }
 
     protected virtual void DoPointerEnter()

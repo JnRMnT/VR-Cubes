@@ -48,6 +48,10 @@ public class MainMenuController : JMBaseMenuInteractable
                 ExecuteEvents.Execute(gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerClickHandler);
             }
         }
+        else if(this.name == "LanguageSelector")
+        {
+            LanguageManager.UpdateLanguage();
+        }
         base.DoPointerDown();
     }
 

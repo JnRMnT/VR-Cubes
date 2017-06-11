@@ -10,26 +10,28 @@ public class LanguageManager : JMBehaviour
 
     protected void Start()
     {
-        UpdateLanguage(PlayerPrefs.GetString("Language"));
+        UpdateLanguage(ConfigurationManager.ActiveLanguage);
     }
 
-    public static void UpdateLanguage(string language)
+    public static void UpdateLanguage(string language = null)
     {
         dictionary = new Dictionary<string, string>();
-        playerLanguage = language;
-        if (playerLanguage == null || playerLanguage == "")
+        if (string.IsNullOrEmpty(language))
         {
-            if (Application.systemLanguage == SystemLanguage.Turkish)
+            ConfigurationManager.ActiveLanguageIndex++;
+            language = ConfigurationManager.ActiveLanguage;
+        }
+        playerLanguage = language;
+        readFromLanguageFile();
+
+        JMLocalizable[] localizables = GameObject.FindObjectsOfType<JMLocalizable>();
+        if(localizables != null)
+        {
+            foreach(JMLocalizable localizable in localizables)
             {
-                playerLanguage = "tr";
-            }
-            else
-            {
-                playerLanguage = "en";
+                localizable.UpdateText();
             }
         }
-
-        readFromLanguageFile();
     }
 
     private static void readFromLanguageFile()
@@ -85,5 +87,4 @@ public class LanguageManager : JMBehaviour
             return value;
         }
     }
-
 }

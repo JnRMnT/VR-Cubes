@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.6.1f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -229,6 +231,7 @@
     <Compile Include="Assets\Scripts\Helpers\GameObjectHelper.cs" />
     <Compile Include="Assets\Scripts\Infrastructural Scripts\JMBaseMenuInteractable.cs" />
     <Compile Include="Assets\Scripts\Infrastructural Scripts\JMBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Infrastructural Scripts\JMLocalizable.cs" />
     <Compile Include="Assets\Scripts\Localization\TextMeshLocalizer.cs" />
     <Compile Include="Assets\Scripts\Localization\UITextLocalizer.cs" />
     <Compile Include="Assets\Scripts\Managers\ConfigurationManager.cs" />

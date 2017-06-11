@@ -3,18 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UITextLocalizer : JMBehaviour
+public class UITextLocalizer : JMLocalizable
 {
-    public bool IsLocalizable = true;
-    public string ResourceKey;
-
-    public override void DoStart()
+    public override void SetText()
     {
-        if (IsLocalizable)
-        {
-            this.GetComponent<Text>().text = LanguageManager.GetString(ResourceKey);
-        }
-
-        base.DoStart();
+        this.GetComponent<Text>().text = LanguageManager.GetString(ResourceKey);
+        base.SetText();
     }
 }
