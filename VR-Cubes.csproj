@@ -240,6 +240,7 @@
     <Compile Include="Assets\Scripts\Managers\LanguageManager.cs" />
     <Compile Include="Assets\Scripts\Managers\ResourceManager.cs" />
     <Compile Include="Assets\Scripts\Managers\ScoreManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\SoundManager.cs" />
     <Compile Include="Assets\Scripts\Object Controllers\Cube.cs" />
     <Compile Include="Assets\Scripts\Object Controllers\CubeInteractions.cs" />
     <Compile Include="Assets\Scripts\Object Controllers\GazeFeedbackController.cs" />

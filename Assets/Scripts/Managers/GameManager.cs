@@ -61,6 +61,7 @@ public class GameManager : JMBehaviour
     public static void GameOver()
     {
         GameState = GameState.Over;
+        SoundManager.PlayFailureSound();
         GameOverScreenController.Show();
     }
 

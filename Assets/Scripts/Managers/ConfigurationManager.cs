@@ -63,5 +63,18 @@ public class ConfigurationManager : JMBehaviour
         }
     }
 
+    public static bool BackgroundMusicOn
+    {
+        get
+        {
+
+            return PlayerPrefs.GetInt("BackgroundMusicOn", 1) == 1;
+        }
+        set
+        {
+            PlayerPrefs.SetInt("BackgroundMusicOn", value ? 1 : 0);
+        }
+    }
+
     public static readonly string[] AvailableLanguages = new string[] { "en", "tr" };
 }

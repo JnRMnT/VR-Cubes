@@ -21,6 +21,15 @@ public class MainMenuController : JMBaseMenuInteractable
                 ExecuteEvents.Execute(gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerClickHandler);
             }
         }
+        else if (this.name == "MusicToggle")
+        {
+            settingsMenu = transform.parent.parent;
+            var toggle = GetComponent<Toggle>();
+            if (!ConfigurationManager.BackgroundMusicOn)
+            {
+                ExecuteEvents.Execute(gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerClickHandler);
+            }
+        }
         base.DoStart();
     }
 
@@ -40,7 +49,7 @@ public class MainMenuController : JMBaseMenuInteractable
         {
             Application.Quit();
         }
-        else if (this.name == "GazeToClickToggle")
+        else if (this.name == "GazeToClickToggle" || this.name == "MusicToggle")
         {
             var toggle = GetComponent<Toggle>();
             if (internalClick)
@@ -48,7 +57,7 @@ public class MainMenuController : JMBaseMenuInteractable
                 ExecuteEvents.Execute(gameObject, new PointerEventData(EventSystem.current), ExecuteEvents.pointerClickHandler);
             }
         }
-        else if(this.name == "LanguageSelector")
+        else if (this.name == "LanguageSelector")
         {
             LanguageManager.UpdateLanguage();
         }
@@ -58,5 +67,10 @@ public class MainMenuController : JMBaseMenuInteractable
     public void GazeToClickToggleChanged(bool isChecked)
     {
         ConfigurationManager.IsGazeClickEnabled = isChecked;
+    }
+
+    public void MusicToggleChanged(bool isOn)
+    {
+        ConfigurationManager.BackgroundMusicOn = isOn;
     }
 }
