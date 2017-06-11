@@ -14,7 +14,8 @@ public class Cube : JMBehaviour
     public static Vector3 Size;
     private bool isShrinking;
     private float shrinkInterval = 1f;
-    public AudioSource LandSound;
+    public AudioSource AudioSource;
+    public AudioClip LandSound, ChainSound;
 
     public bool IsBusy
     {
@@ -67,7 +68,10 @@ public class Cube : JMBehaviour
                         //if no block is under, start falling again
                         isFalling = true;
                     }
-                    BlockChainHelper.CheckChains(this);
+                    else if (BlockChainHelper.CheckChains(this))
+                    {
+                        AudioSource.PlayOneShot(ChainSound);
+                    }
                 }
             }
             else if (isFalling)
@@ -80,7 +84,7 @@ public class Cube : JMBehaviour
                 //This was part of a chain, we are giving feedback and destroying this cube
                 transform.localScale = Vector3.one * shrinkInterval;
                 shrinkInterval -= Time.fixedDeltaTime;
-                if(shrinkInterval <= 0)
+                if (shrinkInterval <= 0)
                 {
                     Destroy(gameObject);
                 }
@@ -226,9 +230,12 @@ public class Cube : JMBehaviour
         {
             //Stop
             isFalling = false;
-            LandSound.PlayOneShot(LandSound.clip);
+            AudioSource.PlayOneShot(LandSound);
             transform.parent.position = new Vector3(transform.parent.position.x, collision.transform.position.y + Size.y, transform.parent.position.z);
-            BlockChainHelper.CheckChains(this);
+            if (BlockChainHelper.CheckChains(this))
+            {
+                AudioSource.PlayOneShot(ChainSound);
+            }
         }
     }
 

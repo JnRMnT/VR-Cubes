@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BlockChainHelper
 {
-    public static void CheckChains(Cube cube)
+    public static bool CheckChains(Cube cube)
     {
         List<Cube> chain = new List<Cube>();
         //Check towards the bottom
@@ -19,6 +19,12 @@ public class BlockChainHelper
             {
                 chainCube.HandleChain();
             }
+
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
